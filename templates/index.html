@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion Detection App</title>
+</head>
+<body>
+    <h1>Emotion Detection App</h1>
+    <label for="textToAnalyze">Enter your text:</label>
+    <input type="text" id="textToAnalyze" name="textToAnalyze">
+    <button onclick="sendText()">Analyze Emotion</button>
+    <div id="response"></div>
+
+    <script>
+        function sendText() {
+            let text = document.getElementById('textToAnalyze').value;
+            fetch('/emotionDetector?textToAnalyze=' + encodeURIComponent(text))
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('response').innerHTML = data;
+                });
+        }
+    </script>
+</body>
+</html>
